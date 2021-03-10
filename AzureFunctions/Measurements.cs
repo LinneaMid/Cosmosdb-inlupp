@@ -7,7 +7,7 @@ namespace AzureFunctions
     public class Measurements
     {
         public string DeviceId { get; set; }
-        public string MacAdress { get; set; }
+        public string MacAddress { get; set; }
         public string Device { get; set; }
         public string School { get; set; }
         public string Name { get; set; }
