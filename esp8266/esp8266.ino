@@ -52,7 +52,8 @@ void loop() {
 
         StaticJsonBuffer<sizeof(payload)> buf;
         JsonObject &root = buf.createObject();
-        root["deviceIds"] = "esp8266";
+        root["device"] = "esp8266";
+        root["macAdress"] = WiFi.macAddress();
         root["ts"] = epochTime;
         root["temp"] = temperature;
         root["hum"] = humidity;

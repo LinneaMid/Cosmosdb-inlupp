@@ -6,7 +6,9 @@ namespace AzureFunctions
 {
     public class Measurements
     {
-        public string DeviceIds { get; set; }
+        public string DeviceId { get; set; }
+        public string MacAdress { get; set; }
+        public string Device { get; set; }
         public string School { get; set; }
         public string Name { get; set; }
         public float Temp { get; set; }

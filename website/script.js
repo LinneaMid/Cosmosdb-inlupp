@@ -9,6 +9,5 @@ fetch("https://iot20-lin-fa.azurewebsites.net/api/GetAllFromCosmosDb")
         var unixTimestamp = row.ts;
         var date = new Date(unixTimestamp*1000);
 
-        tabledata.innerHTML += `<tr><td>${row.deviceIds}</td><td>${date}</td><td>${row.temp}</td><td>${row.hum}</td>`
-    }
+        tabledata.innerHTML += `<tr><td>${row.deviceId}</td><td>${row.macAdress}</td><td>${date}</td><td>${row.temp}</td><td>${row.hum}</td>`    }
 })
