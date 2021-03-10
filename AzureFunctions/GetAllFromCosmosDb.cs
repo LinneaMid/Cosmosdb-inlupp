@@ -21,7 +21,7 @@ namespace AzureFunctions
                 collectionName: "Messages",
                 ConnectionStringSetting = "CosmosDbConnection",
                 SqlQuery = "SELECT * FROM c"
-            )]IEnumerable<dynamic> cosmos,
+            )]IEnumerable<Measurements> cosmos,
             ILogger log)
         {
             log.LogInformation("HTTP trigger function executed.");

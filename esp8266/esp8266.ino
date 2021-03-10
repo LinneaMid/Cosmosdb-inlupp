@@ -14,7 +14,6 @@ char* conn = "HostName=iot20-lin-iothub.azure-devices.net;DeviceId=ESP8266;Share
 
 bool messagePending = false;
 float prevTemp = 0;
-int diff = 1;
 time_t epochTime;
 
 DHT dht(DHT_PIN, DHT_TYPE);
@@ -35,8 +34,7 @@ void loop() {
   float currentTemp = temperature;
 
   if (!messagePending) {
-
-    if ((currentTemp >= (prevTemp + diff)) || (currentTemp <= (prevTemp - diff))) {
+    if ((currentTemp > (prevTemp + 1)) || (currentTemp < (prevTemp - 1))) {
       prevTemp = currentTemp;
 
       epochTime = time(NULL);
@@ -54,7 +52,7 @@ void loop() {
 
         StaticJsonBuffer<sizeof(payload)> buf;
         JsonObject &root = buf.createObject();
-        root["deviceId"] = "esp8266";
+        root["deviceIds"] = "esp8266";
         root["ts"] = epochTime;
         root["temp"] = temperature;
         root["hum"] = humidity;

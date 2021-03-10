@@ -6,6 +6,7 @@ using Microsoft.Azure.EventHubs;
 using System.Text;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace AzureFunctions
 {
@@ -23,8 +24,12 @@ namespace AzureFunctions
             )]out dynamic cosmos,
             ILogger log)
         {
-            log.LogInformation($"messages/events: {Encoding.UTF8.GetString(message.Body.Array)}");
-            cosmos = Encoding.UTF8.GetString(message.Body.Array);
+            var msg = JsonConvert.DeserializeObject<Measurements>(Encoding.UTF8.GetString(message.Body.Array));
+            msg.Name = message.Properties["Name"].ToString();
+            msg.School = message.Properties["School"].ToString();
+
+            var json = JsonConvert.SerializeObject(msg);
+            cosmos = json;
         }
     }
 }
